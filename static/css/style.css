@@ -1,3 +1,13 @@
-p {
-    color: red;
+.unknown{
+    background-color:grey;
+}
+.cell{
+    height:auto;
+    width:auto;
+    border:1px solid black;
+    margin:1px;
+    padding:5px;
+
+    font-size:20px;
+    vertical-align:middle;
 }
