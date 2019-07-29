@@ -13,5 +13,14 @@
 </head>
 <body>
 <h1>Minesweeper</h1>
+
+{% for row in range(row_num) %}
+    <div class="row">
+        {% for col in range(col_num) %}
+            <div data-row = "{{ row }}" data-col ="{{ col }}" class="col-auto unknown">X</div>
+        {% endfor %}
+    </div>
+{%  endfor %}
+
 </body>
 </html>
