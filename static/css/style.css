@@ -1,11 +1,13 @@
 .unknown{
     background-color:grey;
 }
-
-.row .col-auto{
+.cell{
+    height:auto;
+    width:auto;
     border:1px solid black;
-    margin:0;
-    padding:20px;
-    width:50px;
-    height:50px;
+    margin:1px;
+    padding:5px;
+
+    font-size:20px;
+    vertical-align:middle;
 }
