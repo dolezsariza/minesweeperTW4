@@ -10,4 +10,14 @@
 
     font-size:20px;
     vertical-align:middle;
+    cursor: pointer;
+}
+
+.fa-bomb {
+    font-size: 14px;
+}
+
+.known {
+    font-size: 21px;
+    font-weight: bold;
 }
