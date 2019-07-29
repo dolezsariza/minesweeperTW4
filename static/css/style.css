@@ -2,12 +2,21 @@
     background-color:grey;
 }
 .cell{
+    cursor:pointer;
     height:auto;
     width:auto;
-    border:1px solid black;
+
     margin:1px;
     padding:5px;
 
     font-size:20px;
     vertical-align:middle;
+    border-bottom: 2px solid #7B7B7B;
+    border-left: 2px solid #ffffff;
+    border-top: 2px solid #ffffff;
+    border-right: 2px solid #7B7B7B;
+}
+
+.fa-flag{
+    font-size: 12px;
 }
