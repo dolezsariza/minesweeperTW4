@@ -1,5 +1,21 @@
 function main() {
     let board = Array(12).fill().map(() => Array(12).fill(0));
+
+    /*
+    difficulty = document.getElementById("difficulty").value;
+
+    if (difficulty === "easy") {
+        let mineNumber = 7;
+        let arrayLength = 5;
+    } else if (difficulty === "medium") {
+        let mineNumber = 20;
+        let arrayLength = 12;
+    } else {
+        let mineNumber = 60;
+        let arrayLength = 20;
+    }*/
+
+
     placeMines(25, board);
     showCellContent(board)
     setCellNumbers(board);
@@ -118,10 +134,6 @@ function setCellNumbers(board){
 }
 
 function gameOver(){
-
-}
-
-function counter(){
 
 }
 
