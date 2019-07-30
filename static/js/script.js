@@ -3,6 +3,17 @@ function main() {
     placeMines(25, board);
     showCellContent(board)
     setCellNumbers(board);
+    let count = 0;
+
+    for(let i = 0; i < board.length; ++i) {
+        for (let j = 0; j < board[0].length; j++) {
+
+            if (board[i][j] == -1)
+                count++;
+        }
+    }
+    console.log(board);
+    console.log(count);
     placeFlag();
 }
 
@@ -27,7 +38,11 @@ window.oncontextmenu = function (){
 function placeFlag() {
     let cells = document.querySelectorAll('.cell');
     for (let cell of cells) {
+
         cell.addEventListener('contextmenu', function () {
+            if (cell.classList.contains("known")) {
+                console.log("Cell already shown");
+            } else {
             let includes = false;
             for (let cls of cell.classList) {
                 if (cls === 'flag') includes = true;
@@ -38,7 +53,7 @@ function placeFlag() {
                 cell.innerHTML = '<i class="fas fa-flag flag"></i>';
             }
             cell.classList.toggle('flag');
-
+            }
         }, false);
     }
 }
@@ -50,18 +65,23 @@ function showCellContent(board) {
         let gameCell = gameCells[i];
         let row = gameCells[i].dataset.row;
         let col = gameCells[i].dataset.col;
+
         gameCell.addEventListener('click', function() {
             gameCell.classList.add("known");
             gameCell.classList.remove("unknown");
-            if (board[row][col] === -1) {
-                gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
-                gameOver();
-
-            } else {
-                gameCell.textContent = board[row][col];
-            }
+            /*if (gameCell.classList.contains("flag")) {
+                console.log("it's a flag");
+            } else {*/
+                if (board[row][col] === -1) {
+                    gameOver();
+                    gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
+                } else {
+                    gameCell.textContent = board[row][col];
+                }
+            //}
         });
     }
+
 }
 
 
@@ -88,6 +108,7 @@ function setCellNumbers(board){
                     catch (e) {
                         //at edge
                     }
+
                 }
             }
         }
