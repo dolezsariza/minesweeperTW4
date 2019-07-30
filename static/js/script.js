@@ -3,17 +3,6 @@ function main() {
     placeMines(25, board);
     showCellContent(board)
     setCellNumbers(board);
-    let count = 0;
-
-    for(let i = 0; i < board.length; ++i) {
-        for (let j = 0; j < board[0].length; j++) {
-
-            if (board[i][j] == -1)
-                count++;
-        }
-    }
-    console.log(board);
-    console.log(count);
     placeFlag();
 }
 
@@ -44,7 +33,7 @@ function placeFlag() {
                 if (cls === 'flag') includes = true;
             }
             if (includes) {
-                cell.innerHTML = "0";
+                cell.innerHTML = " ";
             } else {
                 cell.innerHTML = '<i class="fas fa-flag flag"></i>';
             }
@@ -66,6 +55,8 @@ function showCellContent(board) {
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
                 gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
+                gameOver();
+
             } else {
                 gameCell.textContent = board[row][col];
             }
@@ -97,11 +88,14 @@ function setCellNumbers(board){
                     catch (e) {
                         //at edge
                     }
-
                 }
             }
         }
     }
+}
+
+function gameOver(){
+
 }
 
 
