@@ -44,7 +44,11 @@ function placeFlag(flags, bombs) {
                 if (cls === 'flag') includes = true;
             }
             if (includes) {
-                flags.pop(flagPosition);
+                for(let i = 0; i < flags.length; i++){
+                    if (arrayEquals2D(flags[i],flagPosition)) {
+                        flags.splice(i, 1);
+                    }
+                }
                 cell.innerHTML = " ";
             } else {
                 flags.push(flagPosition);
@@ -158,18 +162,18 @@ function counter(){
     setInterval(setTime, 1000);
 
     function setTime() {
-      ++totalSeconds;
-      secondsLabel.innerHTML = pad(totalSeconds % 60);
-      minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
     }
 
     function pad(val) {
-      var valString = val + "";
-      if (valString.length < 2) {
-        return "0" + valString;
-      } else {
-        return valString;
-      }
+        var valString = val + "";
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
     }
 }
 
