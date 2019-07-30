@@ -17,9 +17,11 @@
 
 <div class="board container">
 {% for row in range(row_num) %}
-    <div class="row justify-content-center">
+    <div class="row ">
         {% for col in range(col_num) %}
-            <div data-row = "{{ row }}" data-col ="{{ col }}" class="cell col-auto unknown align-middle">0</div>
+            <div data-row = "{{ row }}" data-col ="{{ col }}" class="cell col unknown align-middle">
+                0
+            </div>
         {% endfor %}
     </div>
 {%  endfor %}

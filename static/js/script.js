@@ -1,7 +1,9 @@
 function main() {
     let board = Array(12).fill().map(() => Array(12).fill(0));
-    placeMines(10, board);
+    placeMines(20, board);
     showCellContent(board)
+    setCellNumbers(board);
+    console.log(board);
     placeFlag();
 }
 
@@ -60,5 +62,30 @@ function showCellContent(board) {
         });
     }
 }
+
+
+function setCellNumbers(board){
+
+    for(let i = 1; i < board.length -1; i++){
+        for(let j = 1; j < board[0].length -1; j++){
+            console.log(board[i][j]);
+
+            if(board[i][j] === -1){
+
+                board[i-1][j-1] += 1;
+                board[i-1][j] += 1;
+                board[i-1][j+1] += 1;
+
+                board[i][j-1] += 1;
+                board[i][j+1] += 1;
+
+                board[i+1][j-1] += 1;
+                board[i+1][j] += 1;
+                board[i+1][j+1] += 1;
+            }
+        }
+    }
+}
+
 
 main();
