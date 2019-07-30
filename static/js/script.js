@@ -5,7 +5,7 @@ function main() {
     setCellNumbers(board);
     let count = 0;
 
-    for(let i = 0; i < board.length; ++i) {
+    for (let i = 0; i < board.length; ++i) {
         for (let j = 0; j < board[0].length; j++) {
 
             if (board[i][j] == -1)
@@ -15,12 +15,10 @@ function main() {
     console.log(board);
     console.log(count);
     placeFlag();
+    counter();
 
-    gameOver = false; //needs the function
-     while (!gameOver) {
-        counter();
-    }
 }
+
 
 function placeMines(mineNumber, board){
     let i = 0;
@@ -124,6 +122,10 @@ function gameOver(){
 }
 
 function counter(){
+
+}
+
+function counter(){
     var minutesLabel = document.getElementById("minutes");
     var secondsLabel = document.getElementById("seconds");
     var totalSeconds = 0;
@@ -144,5 +146,6 @@ function counter(){
       }
     }
 }
+
 
 main();
