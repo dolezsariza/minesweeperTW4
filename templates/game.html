@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link rel="icon" href="{{ url_for('static', filename='img/flag.png') }}">
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Minesweeper</title>
     <link rel="stylesheet" type= "text/css" href="static/css/style.css">
     <script src="https://kit.fontawesome.com/48c43d0252.js" defer></script>
@@ -14,27 +14,40 @@
 </head>
 <body>
 
-<h1>Minesweeper</h1>
-<div class = "smiley">
-    <i class="far fa-smile"></i>
-</div>
-<form>
-<input type="button" onClick="history.go(0)" value="Restart">
-</form>
-<a href="/"><button>go back to main</button></a>
-<h2>Time</h2>
-<label id="minutes">00</label>:<label id="seconds">00</label>
-<div class="board container">
-{% for row in range(row_num) %}
-    <div class="row ">
-        {% for col in range(col_num) %}
-            <div data-row = "{{ row }}" data-col ="{{ col }}" class="cell col unknown align-middle">
+<div class="container">
+    <div class = "row">
 
+
+        <div class = "col">
+            <input type="button" onClick="history.go(0)" value="Restart" class = "btn btn-secondary">
+        </div>
+        <div class = "col">
+            <a href="/"><button class = "btn btn-warning" >Main menu</button></a>
+        </div>
+        <div class = "col">
+            <h1>Minesweeper</h1>
+        </div>
+        <div class = "col">
+            <div class = "smiley">
+                <i class="far fa-smile"></i>
             </div>
-        {% endfor %}
+        </div>
+        <div class = "col">
+            <h2>Time</h2>
+            <label id="minutes">00</label>:<label id="seconds">00</label>
+        </div>
     </div>
-{%  endfor %}
+    <div class = board>
+        {% for row in range(row_num) %}
+            <div class="row ">
+                {% for col in range(col_num) %}
+                    <div data-row = "{{ row }}" data-col ="{{ col }}" class="cell col unknown align-middle">
 
+                    </div>
+                {% endfor %}
+            </div>
+        {%  endfor %}
+    </div>
 </div>
 
 </body>
