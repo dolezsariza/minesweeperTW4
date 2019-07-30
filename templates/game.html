@@ -18,6 +18,12 @@
 <div class = "smiley">
     <i class="far fa-smile"></i>
 </div>
+<form>
+<input type="button" onClick="history.go(0)" value="Restart">
+</form>
+<a href="/"><button>go back to main</button></a>
+<h2>Time</h2>
+<label id="minutes">00</label>:<label id="seconds">00</label>
 <div class="board container">
 {% for row in range(row_num) %}
     <div class="row ">
@@ -28,6 +34,7 @@
         {% endfor %}
     </div>
 {%  endfor %}
+
 </div>
 
 </body>
