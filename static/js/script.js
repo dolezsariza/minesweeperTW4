@@ -2,24 +2,7 @@ function main() {
     let board = Array(12).fill().map(() => Array(12).fill(0));
     placeMines(10, board);
     showCellContent(board)
-
-
-    let cells = document.querySelectorAll('.cell');
-    for (let cell of cells){
-        cell.addEventListener('contextmenu',function(){
-            let includes = false;
-            for (let cls of cell.classList){
-                if (cls === 'flag')includes = true;
-            }
-            if(includes){
-                cell.innerHTML = "0";
-            }else{
-                cell.innerHTML = '<i class="fas fa-flag flag"></i>';
-            }
-            cell.classList.toggle('flag');
-
-        }, false);
-    }
+    placeFlag();
 }
 
 function placeMines(mineNumber, board){
@@ -37,6 +20,26 @@ function placeMines(mineNumber, board){
 window.oncontextmenu = function (){
     //disable right click in browser
     return false;
+};
+
+
+function placeFlag() {
+    let cells = document.querySelectorAll('.cell');
+    for (let cell of cells) {
+        cell.addEventListener('contextmenu', function () {
+            let includes = false;
+            for (let cls of cell.classList) {
+                if (cls === 'flag') includes = true;
+            }
+            if (includes) {
+                cell.innerHTML = "0";
+            } else {
+                cell.innerHTML = '<i class="fas fa-flag flag"></i>';
+            }
+            cell.classList.toggle('flag');
+
+        }, false);
+    }
 }
 
 
@@ -52,7 +55,7 @@ function showCellContent(board) {
             if (board[row][col] === -1) {
                 gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
             } else {
-            gameCell.textContent = board[row][col];
+                gameCell.textContent = board[row][col];
             }
         });
     }
