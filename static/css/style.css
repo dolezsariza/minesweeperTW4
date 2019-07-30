@@ -25,7 +25,7 @@
 }
 
 .known{
-        border-bottom: 2px solid #f5f5f5;
+    border-bottom: 2px solid #f5f5f5;
     border-left: 2px solid #7B7B7B;
     border-top: 2px solid #7B7B7B;
     border-right: 2px solid #f5f5f5;
@@ -67,6 +67,6 @@
     padding: 2px;
 
     color: #ffd300;
-    background-color: grey;
+
     font-size: 50px;
 }
