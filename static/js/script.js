@@ -48,7 +48,7 @@ function placeFlag() {
                 if (cls === 'flag') includes = true;
             }
             if (includes) {
-                cell.innerHTML = "0";
+                cell.innerHTML = "";
             } else {
                 cell.innerHTML = '<i class="fas fa-flag flag"></i>';
             }

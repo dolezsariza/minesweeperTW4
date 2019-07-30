@@ -12,10 +12,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<h1>Welcome to the game</h1>
+<h1>Welcome to the game of *insert team name*</h1>
 <h2>Minesweeper</h2>
-<div><i class="fas fa-bomb"></i></div>
-<a href="/game"><button>Play</button></a>
+<h3>Choose difficulty</h3>
+<form action="/game" method="POST">
+    <select name="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+    </select>
+    <p><button type="submit">Play</button></p>
+</form>
 
 </body>
 </html>
