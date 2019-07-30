@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='img/flag.png') }}">
     <meta charset="UTF-8">
     <title>Minesweeper</title>
@@ -15,7 +16,7 @@
 <body>
 
 <div class="container">
-    <div class = "row">
+    <div class = "row align-items-center">
 
 
         <div class = "col">
@@ -32,7 +33,7 @@
                 <i class="far fa-smile"></i>
             </div>
         </div>
-        <div class = "col">
+        <div class = "col justify-content-center">
             <h2>Time</h2>
             <label id="minutes">00</label>:<label id="seconds">00</label>
         </div>

@@ -1,6 +1,6 @@
 
-body{
-    font-family:'Lato',sans-serif;
+*{
+    font-family: 'Quicksand', sans-serif;
 }
 .unknown{
     background-color:grey;
@@ -25,7 +25,6 @@ body{
 
 .cell{
     display:inline-block;
-
     cursor:pointer;
     height:60px;
     padding:15px;
@@ -58,7 +57,7 @@ body{
 .far{
     border-radius: 2px;
     padding: 2px;
-    margin-top: 5px;
+
     color: #ffd300;
     background-color: grey;
     font-size: 50px;
