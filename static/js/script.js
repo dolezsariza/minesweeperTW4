@@ -43,16 +43,16 @@ function placeFlag() {
             if (cell.classList.contains("known")) {
                 console.log("Cell already shown");
             } else {
-            let includes = false;
-            for (let cls of cell.classList) {
-                if (cls === 'flag') includes = true;
-            }
-            if (includes) {
-                cell.innerHTML = " ";
-            } else {
-                cell.innerHTML = '<i class="fas fa-flag flag"></i>';
-            }
-            cell.classList.toggle('flag');
+                let includes = false;
+                for (let cls of cell.classList) {
+                    if (cls === 'flag') includes = true;
+                }
+                if (includes) {
+                    cell.innerHTML = " ";
+                } else {
+                    cell.innerHTML = '<i class="fas fa-flag flag"></i>';
+                }
+                cell.classList.toggle('flag');
             }
         }, false);
     }
@@ -67,18 +67,17 @@ function showCellContent(board) {
         let col = gameCells[i].dataset.col;
 
         gameCell.addEventListener('click', function() {
+
+            if (gameCell.classList.contains("flag")) {
+                return;}
             gameCell.classList.add("known");
             gameCell.classList.remove("unknown");
-            /*if (gameCell.classList.contains("flag")) {
-                console.log("it's a flag");
-            } else {*/
-                if (board[row][col] === -1) {
-                    gameOver();
-                    gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
-                } else {
-                    gameCell.textContent = board[row][col];
-                }
-            //}
+            if (board[row][col] === -1) {
+                gameOver();
+                gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
+            } else {
+                gameCell.textContent = board[row][col];
+            }
         });
     }
 
