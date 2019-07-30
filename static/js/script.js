@@ -1,18 +1,30 @@
 function main() {
     let board = Array(12).fill().map(() => Array(12).fill(0));
-    placeMines(10, board);
-    showCellContent(board);
+    placeMines(25, board);
+    showCellContent(board)
+    setCellNumbers(board);
+    let count = 0;
+
+    for(let i = 0; i < board.length; ++i) {
+        for (let j = 0; j < board[0].length; j++) {
+
+            if (board[i][j] == -1)
+                count++;
+        }
+    }
+    console.log(board);
+    console.log(count);
     placeFlag();
 }
 
 function placeMines(mineNumber, board){
-    for(let i=0;i< mineNumber;i++){
+    let i = 0;
+    while(i !== mineNumber){
         let row = Math.floor(Math.random() * board.length);
         let col = Math.floor(Math.random() * board[0].length);
         if(board[row][col]!==-1){
             board[row][col]=-1;
-        }else{
-            i-=1;
+            i++;
         }
     }
 }
@@ -70,5 +82,37 @@ function showCellContent(board) {
     }
 
 }
+
+
+function setCellNumbers(board){
+    let offsets = [
+        [-1,-1],
+        [-1, 0],
+        [-1, 1],
+        [ 0,-1],
+        [ 0, 1],
+        [ 1,-1],
+        [ 1, 0],
+        [ 1, 1]
+    ];
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[0].length; j++){
+            if (board[i][j] === -1){
+                for(let offset of offsets) {
+                    try{
+                        if(board[i+offset[0]][j+offset[1]] !== -1){
+                            board[i+offset[0]][j+offset[1]] ++;
+                        }
+                    }
+                    catch (e) {
+                        //at edge
+                    }
+
+                }
+            }
+        }
+    }
+}
+
 
 main();
