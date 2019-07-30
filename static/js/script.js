@@ -16,15 +16,13 @@ function main() {
         let arrayLength = 20;
     }*/
 
-
-    placeMines(25, board);
-
     let bombs = placeBombs(5, board);
 
     showCellContent(board)
     setCellNumbers(board);
     let flags = [];
     placeFlag(flags, bombs);
+    counter();
 }
 
 
