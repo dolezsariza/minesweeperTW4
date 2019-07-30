@@ -115,8 +115,11 @@ function setCellNumbers(board){
 }
 
 function gameOver(){
-
+    let smiley = document.querySelector('.fa-smile');
+    smiley.classList.add('fa-frown');
+    smiley.classList.remove('fa-smile');
 }
+
 
 
 main();

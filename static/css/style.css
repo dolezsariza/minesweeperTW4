@@ -30,7 +30,6 @@
 }
 
 .known {
-
     font-size: 21px;
     font-weight: bold;
 
@@ -44,4 +43,8 @@
 
 .fa-flag{
     font-size: 12px;
+}
+
+.fa-smile .fa-frown{
+    font-size: 20px;
 }
