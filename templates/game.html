@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('static', filename='img/flag.png') }}">
     <meta charset="UTF-8">
     <title>Minesweeper</title>
@@ -25,15 +26,15 @@
         <div class = "col">
             <a href="/"><button class = "btn btn-warning" >Main menu</button></a>
         </div>
-        <div class = "col">
+        <div class = "col animated bounceIn fast">
             <h1>Minesweeper</h1>
         </div>
-        <div class = "col">
+        <div class = "col ">
             <div class = "smiley">
                 <i class="far fa-smile"></i>
             </div>
         </div>
-        <div class = "col justify-content-center">
+        <div class = "col justify-content-center animated flipInX fast">
             <h2>Time</h2>
             <label id="minutes">00</label>:<label id="seconds">00</label>
         </div>

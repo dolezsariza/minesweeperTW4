@@ -1,5 +1,4 @@
 function main() {
-
     let board = Array(12).fill().map(() => Array(12).fill(0));
     let bombs = placeBombs(5, board);
     showCellContent(board)
