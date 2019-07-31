@@ -1,15 +1,26 @@
-var countTime;
+let countTime;
+
+
 
 function main() {
+
+    setBoardWidth();
+    addEventListener('click', init);
+
+}
+
+
+function init(event) {
+    let row =  event.target.dataset.row;
+    let col = event.target.dataset.col;
 
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
     let numberOfBombs = getNumberOfBombs();
-    let bombs = placeBombs(numberOfBombs, board);
+    let bombs = placeBombs(numberOfBombs, board, row, col);
 
     console.log("Number of bombs : ",bombs.length);
-
-
+    console.log(row, col);
     //set Bombs
     document.getElementById("bombs_left").textContent = numberOfBombs;
     //Set modals
@@ -20,7 +31,6 @@ function main() {
         home.addEventListener('click', function(){window.location.href = "/";});
     }
 
-    setBoardWidth();
     showCellContent(board);
     setCellNumbers(board);
     printBoard(board);
@@ -29,12 +39,14 @@ function main() {
 
     counter();
 
-    //console.log(board);
-
+    removeEventListener('click', init);
+    document.getElementById(`cell-${row}-${col}`).click();
 }
 
 
-function placeBombs(bombNumber, board){
+
+function placeBombs(bombNumber, board, row, col){
+
     let bombs = [];
     let i = 0;
     while(i !== bombNumber){
@@ -239,7 +251,7 @@ function countScore() {
     let totalTime = document.getElementById("total_time").textContent;
     let scoreByTime;
     if (totalTime < 300) {
-    scoreByTime = 1200 - (totalTime * 4)
+        scoreByTime = 1200 - (totalTime * 4)
     } else {
         scoreByTime = 0
     }
