@@ -88,8 +88,12 @@ function showCellContent(board) {
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
                 gameOver();
-                gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
-            } else {
+                gameCell.innerHTML = '<i class="fas fa-bomb"></i>';
+
+            } else if (board[row][col] === 0){
+                bubbling(board,row,col,gameCell);
+                console.log(gameCell);
+            }else{
                 gameCell.textContent = board[row][col];
             }
         });
@@ -233,5 +237,47 @@ function setBoardWidth(){
     }
 }
 
+
+function bubbling(board,positionRow,positionCol,gameCell) {
+
+
+    let offsets = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1]
+    ];
+
+    if (board[positionRow][positionCol] == 0) {
+        gameCell.classList.add("known");
+        gameCell.classList.remove("unknown");
+
+        for (let offset of offsets) {
+            try {
+                let currentRow = parseInt(positionRow) + offset[0];
+                let currentCol = parseInt(positionCol) + offset[1];
+                let cell = document.getElementById(`cell-${currentRow}-${currentCol}`);
+                //console.log(cell-${currentRow}-${currentCol});
+                console.log(cell);
+                if (board[currentRow][currentCol] == 0) {
+                    if(cell.classList.contains('unknown')) {
+                        bubbling(board, currentRow, currentCol, cell);
+                    }
+                } else {
+                    cell.classList.add("known");
+                    cell.classList.remove("unknown");
+                    cell.textContent = board[currentRow][currentCol];
+                }
+            } catch (e) {
+                //at edge
+            }
+
+        }
+    }
+}
 
 main();
