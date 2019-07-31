@@ -1,6 +1,7 @@
 var countTime;
 
 function main() {
+
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
     let numberOfBombs = getNumberOfBombs();
@@ -21,7 +22,6 @@ function main() {
 
     setBoardWidth();
     showCellContent(board);
-
     setCellNumbers(board);
     printBoard(board);
     let flags = [];

@@ -1,4 +1,3 @@
-
 *{
     font-family: 'Quicksand', sans-serif;
 }
@@ -22,7 +21,6 @@
 
 
 .row{
-
     width:auto;
     max-width: 724px;
 }
@@ -47,8 +45,6 @@
     text-align:center;
 }
 
-
-
 .fa-bomb {
     font-size: 14px;
 }
@@ -56,10 +52,7 @@
 .known {
     font-size: 21px;
     font-weight: bold;
-
 }
-
-
 
 .fa-flag{
     font-size: 12px;
@@ -68,8 +61,6 @@
 .far{
     border-radius: 2px;
     padding: 2px;
-
     color: #ffd300;
-
     font-size: 50px;
 }
