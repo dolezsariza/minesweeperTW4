@@ -10,8 +10,8 @@ function main() {
 
 
 function init(event) {
-    let row =  event.target.dataset.row;
-    let col = event.target.dataset.col;
+    let row =  parseInt(event.target.dataset.row);
+    let col = parseInt(event.target.dataset.col);
 
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
@@ -44,14 +44,30 @@ function init(event) {
 
 
 
-function placeBombs(bombNumber, board, row, col){
-
+function placeBombs(bombNumber, board, forbiddenRow, forbiddenCol){
+    let forbiddenCells = [
+        [forbiddenRow - 1,forbiddenCol - 1],
+        [forbiddenRow - 1,forbiddenCol    ],
+        [forbiddenRow - 1,forbiddenCol + 1],
+        [forbiddenRow,    forbiddenCol - 1],
+        [forbiddenRow,    forbiddenCol    ],
+        [forbiddenRow,    forbiddenCol + 1],
+        [forbiddenRow + 1,forbiddenCol - 1],
+        [forbiddenRow + 1,forbiddenCol    ],
+        [forbiddenRow + 1,forbiddenCol + 1]
+    ];
     let bombs = [];
     let i = 0;
     while(i !== bombNumber){
         let row = Math.floor(Math.random() * board.length);
         let col = Math.floor(Math.random() * board[0].length);
-        if(board[row][col]!==-1){
+        let includes = false;
+        for (let cell of forbiddenCells){
+            if(arrayEquals2D([row,col],cell)){
+                includes = true;
+            }
+        }
+        if(board[row][col]!==-1 && !includes){
             bombs.push([row,col]);
             board[row][col]=-1;
             i++;
