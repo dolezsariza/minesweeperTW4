@@ -1,6 +1,9 @@
 function main() {
-    let lengthOfArray = parseInt(getArraySize());
+    let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
+    let numberOfBombs = getNumberOfBombs();
+    let bombs = placeBombs(numberOfBombs, board);
+
     //Set modals
     console.log(board);
     for (let refresh of document.querySelectorAll(".refresh")){
@@ -11,7 +14,7 @@ function main() {
     }
 
     setBoardWidth();
-    let bombs = placeBombs(5, board);
+
 
     showCellContent(board)
     setCellNumbers(board);
@@ -193,9 +196,23 @@ function counter(){
 }
 
 function getArraySize() {
-    let row_num = document.getElementById("row_num").textContent;
-    return row_num;
+    let row_num = parseInt(document.getElementById("row_num").textContent);
+    return row_num
 }
+
+function getNumberOfBombs() {
+    let difficulty = document.getElementById("difficulty").textContent;
+
+    if (difficulty === "easy") {
+        numberOfBombs = 10;
+    } else if (difficulty === "medium") {
+        numberOfBombs = 40;
+    } else {
+        numberOfBombs = 99;
+    }
+    return numberOfBombs
+}
+
 
 
 function setBoardWidth(){
