@@ -1,3 +1,5 @@
+var countTime;
+
 function main() {
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
@@ -16,7 +18,9 @@ function main() {
     setCellNumbers(board);
     let flags = [];
     placeFlag(flags, bombs);
+
     counter();
+    console.log(board);
 }
 
 
@@ -134,6 +138,7 @@ function gameOver(){
     modalBody.textContent = "Would you like to retry?";
     modalTitle.textContent = "Game over!";
     $('#myModal').modal('show');
+    clearInterval(countTime);
 }
 
 
@@ -143,11 +148,14 @@ function isGameWon(flags, bombs){
     if(arrayEquals2D(flags, bombs)){
         let modalTitle = document.querySelector(".modal-title");
         let modalBody = document.querySelector(".modal-body");
+        clearInterval(countTime);
+        countScore();
         console.log("game won");
-        modalBody.textContent = "You won! Would you like to play again?";
+        modalBody.textContent = `You won! Would you like to play again? Your score: ${countScore()}`;
         modalTitle.textContent = "Congratulations!";
         $('#myModal').modal('show');
         //game won
+
     }
 }
 
@@ -172,13 +180,16 @@ function arrayEquals2D(a, b){
 function counter(){
     let minutesLabel = document.getElementById("minutes");
     let secondsLabel = document.getElementById("seconds");
+    let totalTime = document.getElementById("total_time");
     let totalSeconds = 0;
-    setInterval(setTime, 1000);
+    countTime = setInterval(setTime, 1000);
 
     function setTime() {
         ++totalSeconds;
         secondsLabel.innerHTML = pad(totalSeconds % 60);
         minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+        totalTime.innerHTML = totalSeconds;
+
     }
 
     function pad(val) {
@@ -200,13 +211,29 @@ function getNumberOfBombs() {
     let difficulty = document.getElementById("difficulty").textContent;
 
     if (difficulty === "easy") {
-        numberOfBombs = 10;
+        numberOfBombs = 5;
     } else if (difficulty === "medium") {
         numberOfBombs = 40;
     } else {
         numberOfBombs = 99;
     }
     return numberOfBombs
+}
+
+function countScore() {
+    let amountOfFlippedCells = document.querySelectorAll(".known").length;
+    let totalTime = document.getElementById("total_time").textContent;
+    let scoreByTime;
+    if (totalTime < 300) {
+    scoreByTime = 1200 - (totalTime * 4)
+    } else {
+        scoreByTime = 0
+    }
+    let scoreByCell = amountOfFlippedCells * 100;
+    let totalScore = scoreByCell + scoreByTime;
+
+    return totalScore;
+
 }
 
 
