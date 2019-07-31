@@ -10,20 +10,7 @@ function main() {
         home.addEventListener('click', function(){window.location.href = "/";});
     }
 
-    /*
-    difficulty = document.getElementById("difficulty").value;
-
-    if (difficulty === "easy") {
-        let mineNumber = 7;
-        let arrayLength = 5;
-    } else if (difficulty === "medium") {
-        let mineNumber = 20;
-        let arrayLength = 12;
-    } else {
-        let mineNumber = 60;
-        let arrayLength = 20;
-    }*/
-
+    setBoardWidth();
     let bombs = placeBombs(5, board);
 
     showCellContent(board)
@@ -209,5 +196,25 @@ function getArraySize() {
     let row_num = document.getElementById("row_num").textContent;
     return row_num;
 }
+
+
+function setBoardWidth(){
+    let difficulty = document.getElementById("difficulty").textContent;
+    let rows = document.querySelectorAll(".row");
+    let board = document.querySelector(".board");
+    if (difficulty === "medium")return;
+    let width = difficulty === "easy" ? "305px" : "2000px";
+    board.style.maxWidth = width;
+    for(let row of rows) {
+        row.style.maxWidth = width;
+    }
+    if (difficulty==="hard"){
+        let cells = document.querySelectorAll(".cell");
+        for (let cell of cells){
+            cell.style.height = "55.3px";
+        }
+    }
+}
+
 
 main();
