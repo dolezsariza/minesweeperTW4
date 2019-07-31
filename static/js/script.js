@@ -3,7 +3,6 @@ let countTime;
 
 
 function main() {
-
     setBoardWidth();
     addEventListener('click', init);
 
