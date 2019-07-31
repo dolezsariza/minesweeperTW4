@@ -42,7 +42,7 @@
             <label id="minutes">00</label>:<label id="seconds">00</label>
         </div>
     </div>
-    <div class = board>
+    <div class = "board">
         {% for row in range(row_num) %}
             <div class="row ">
                 {% for col in range(col_num) %}
@@ -53,6 +53,9 @@
             </div>
         {%  endfor %}
     </div>
+
+    <i style="visibility: hidden" class="fas fa-bomb"></i>
+    <i style="visibility: hidden" class="fas fa-flag flag"></i>
 </div>
 
 </body>
