@@ -181,6 +181,7 @@ function gameOver(){
     let modalBody = document.querySelector(".modal-body");
     modalBody.textContent = "Would you like to retry?";
     modalTitle.textContent = "Game over!";
+    $('#myModal').modal({backdrop: 'static', keyboard: false})
     $('#myModal').modal('show');
     clearInterval(countTime);
 }
@@ -195,6 +196,7 @@ function isGameWon(flags, bombs){
         console.log("game won");
         modalBody.textContent = `You won! Would you like to play again? Your score: ${countScore()}`;
         modalTitle.textContent = "Congratulations!";
+        $('#myModal').modal({backdrop: 'static', keyboard: false})
         $('#myModal').modal('show');
         //game won
 
