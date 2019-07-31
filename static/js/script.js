@@ -6,6 +6,11 @@ function main() {
     let numberOfBombs = getNumberOfBombs();
     let bombs = placeBombs(numberOfBombs, board);
 
+    console.log("Number of bombs : ",bombs.length);
+
+
+    //set Bombs
+    document.getElementById("bombs_left").textContent = numberOfBombs;
     //Set modals
     for (let refresh of document.querySelectorAll(".refresh")){
         refresh.addEventListener('click', function(){window.location.reload();})
@@ -14,13 +19,18 @@ function main() {
         home.addEventListener('click', function(){window.location.href = "/";});
     }
 
+    setBoardWidth();
     showCellContent(board);
+
     setCellNumbers(board);
+    printBoard(board);
     let flags = [];
     placeFlag(flags, bombs);
 
     counter();
-    console.log(board);
+
+    //console.log(board);
+
 }
 
 
@@ -47,6 +57,7 @@ window.oncontextmenu = function (){
 
 function placeFlag(flags, bombs) {
     let cells = document.querySelectorAll('.cell');
+    let bombsLeft = document.getElementById("bombs_left")
     for (let cell of cells) {
 
         cell.addEventListener('contextmenu', function () {
@@ -55,6 +66,7 @@ function placeFlag(flags, bombs) {
                 return;
             }
             if (cell.classList.contains("flag")) {
+                bombsLeft.textContent = (parseInt(bombsLeft.textContent))+1;
                 for(let i = 0; i < flags.length; i++){
                     if (arrayEquals2D(flags[i],flagPosition)) {
                         flags.splice(i, 1);
@@ -62,6 +74,7 @@ function placeFlag(flags, bombs) {
                 }
                 cell.innerHTML = " ";
             } else {
+                bombsLeft.textContent = (parseInt(bombsLeft.textContent))-1;
                 flags.push(flagPosition);
                 cell.innerHTML = '<i class="fas fa-flag flag"></i>';
             }
@@ -88,8 +101,11 @@ function showCellContent(board) {
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
                 gameOver();
-                gameCell.innerHTML = "<i class=\"fas fa-bomb\"></i>";
-            } else {
+                gameCell.innerHTML = '<i class="fas fa-bomb"></i>';
+
+            } else if (board[row][col] === 0){
+                bubbling(board,row,col,gameCell);
+            }else{
                 gameCell.textContent = board[row][col];
             }
         });
@@ -114,7 +130,7 @@ function setCellNumbers(board){
             if (board[i][j] === -1){
                 for(let offset of offsets) {
                     try{
-                        if(board[i+offset[0]][j+offset[1]] !== -1){
+                        if(board[i+offset[0]][j+offset[1]] !== -1 && board[i+offset[0]][j+offset[1]] !=null){
                             board[i+offset[0]][j+offset[1]] ++;
                         }
                     }
@@ -143,8 +159,6 @@ function gameOver(){
 
 
 function isGameWon(flags, bombs){
-
-    console.log(flags, bombs);
     if(arrayEquals2D(flags, bombs)){
         let modalTitle = document.querySelector(".modal-title");
         let modalBody = document.querySelector(".modal-body");
@@ -209,9 +223,9 @@ function getArraySize() {
 
 function getNumberOfBombs() {
     let difficulty = document.getElementById("difficulty").textContent;
-
+    let numberOfBombs;
     if (difficulty === "easy") {
-        numberOfBombs = 5;
+        numberOfBombs = 4;
     } else if (difficulty === "medium") {
         numberOfBombs = 40;
     } else {
@@ -236,5 +250,81 @@ function countScore() {
 
 }
 
+
+
+function setBoardWidth(){
+    let difficulty = document.getElementById("difficulty").textContent;
+    let rows = document.querySelectorAll(".row");
+    let board = document.querySelector(".board");
+    if (difficulty === "medium")return;
+    let width = difficulty === "easy" ? "305px" : "2000px";
+    board.style.maxWidth = width;
+    for(let row of rows) {
+        row.style.maxWidth = width;
+    }
+    if (difficulty==="hard"){
+        let cells = document.querySelectorAll(".cell");
+        for (let cell of cells){
+            cell.style.height = "55.3px";
+        }
+    }
+}
+
+
+function bubbling(board,positionRow,positionCol,gameCell) {
+
+
+    let offsets = [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1]
+    ];
+
+    if (board[positionRow][positionCol] == 0) {
+        gameCell.classList.add("known");
+        gameCell.classList.remove("unknown");
+
+        for (let offset of offsets) {
+            try {
+                let currentRow = parseInt(positionRow) + offset[0];
+                let currentCol = parseInt(positionCol) + offset[1];
+                let cell = document.getElementById(`cell-${currentRow}-${currentCol}`);
+                if (board[currentRow][currentCol] == 0) {
+                    if(cell.classList.contains('unknown')) {
+                        bubbling(board, currentRow, currentCol, cell);
+                    }
+                } else {
+                    cell.classList.add("known");
+                    cell.classList.remove("unknown");
+                    cell.textContent = board[currentRow][currentCol];
+                }
+            } catch (e) {
+                //at edge
+            }
+
+        }
+    }
+}
+
+function printBoard(board){
+    let boardString ="";
+    for (let row of board){
+        for(let item of row){
+            if (item >= 0 && item < 10){
+                boardString += " ";
+            }
+            boardString += item;
+
+            boardString += "|";
+        }
+        boardString += "\n";
+    }
+    console.log(boardString);
+}
 
 main();
