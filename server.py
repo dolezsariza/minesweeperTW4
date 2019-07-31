@@ -21,7 +21,7 @@ def game():
         row_num = 20
         col_num = 20
 
-    return render_template("game.html",row_num=row_num, col_num=col_num)
+    return render_template("game.html",row_num=row_num, col_num=col_num, difficulty=difficulty)
 
 
 if __name__ == '__main__':

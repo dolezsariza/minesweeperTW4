@@ -51,6 +51,7 @@
         <div class = "col animated bounceIn fast">
             <h1>Minesweeper</h1>
         </div>
+
         <div class = "col ">
             <div class = "smiley">
                 <i class="far fa-smile"></i>
@@ -72,8 +73,13 @@
             </div>
         {%  endfor %}
     </div>
-
+    <div class="footer">
+         <p>Level <span id="difficulty">{{ difficulty }}</span> (
+                <span id="row_num">{{ row_num }}</span> x
+                <span id="col_num">{{ col_num }}</span>)</p>
+    </div>
     <i style="visibility: hidden" class="fas fa-bomb"></i>
+    <i style="visibility: hidden" class="fas fa-flag flag"></i>
     <i style="visibility: hidden" class="fas fa-flag flag"></i>
 </div>
 

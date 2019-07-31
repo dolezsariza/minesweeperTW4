@@ -1,6 +1,8 @@
 function main() {
-    let board = Array(12).fill().map(() => Array(12).fill(0));
+    let lengthOfArray = parseInt(getArraySize());
+    let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
     //Set modals
+    console.log(board);
     for (let refresh of document.querySelectorAll(".refresh")){
         refresh.addEventListener('click', function(){window.location.reload();})
     }
@@ -23,7 +25,8 @@ function main() {
     }*/
 
     let bombs = placeBombs(5, board);
-    showCellContent(board);
+
+    showCellContent(board)
     setCellNumbers(board);
     let flags = [];
     placeFlag(flags, bombs);
@@ -202,5 +205,9 @@ function counter(){
     }
 }
 
+function getArraySize() {
+    let row_num = document.getElementById("row_num").textContent;
+    return row_num;
+}
 
 main();
