@@ -1,9 +1,8 @@
 function main() {
-    let lengthOfArray = int(getArraySize());
+    let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
-
-
-    let bombs = placeBombs(5, board);
+    let numberOfBombs = getNumberOfBombs();
+    let bombs = placeBombs(numberOfBombs, board);
 
     showCellContent(board);
     setCellNumbers(board);
@@ -178,8 +177,22 @@ function counter(){
 }
 
 function getArraySize() {
-    let row_num = document.getElementById("row_num").textContent;
-    return row_num;
+    let row_num = parseInt(document.getElementById("row_num").textContent);
+    return row_num
 }
+
+function getNumberOfBombs() {
+    let difficulty = document.getElementById("difficulty").textContent;
+
+    if (difficulty === "easy") {
+        numberOfBombs = 10;
+    } else if (difficulty === "medium") {
+        numberOfBombs = 40;
+    } else {
+        numberOfBombs = 99;
+    }
+    return numberOfBombs
+}
+
 
 main();
