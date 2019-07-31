@@ -128,9 +128,9 @@ function showCellContent(board) {
             gameCell.classList.add("known");
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
-                gameOver();
+                showBombsOnLoose(board);
+                setInterval(gameOver, 1000);
                 gameCell.innerHTML = '<i class="fas fa-bomb"></i>';
-
             } else if (board[row][col] === 0){
                 bubbling(board,row,col,gameCell);
             }else{
@@ -183,6 +183,7 @@ function gameOver(){
     modalTitle.textContent = "Game over!";
     $('#myModal').modal('show');
     clearInterval(countTime);
+
 }
 
 
@@ -196,6 +197,7 @@ function isGameWon(flags, bombs){
         modalBody.textContent = `You won! Would you like to play again? Your score: ${countScore()}`;
         modalTitle.textContent = "Congratulations!";
         $('#myModal').modal('show');
+
         //game won
 
     }
@@ -355,4 +357,18 @@ function printBoard(board){
     console.log(boardString);
 }
 
+
+function showBombsOnLoose(board){
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[0].length; j++){
+            if(board[i][j] === -1){
+                let cell = document.getElementById(`cell-${i}-${j}`);
+                cell.classList.add("known");
+                cell.classList.remove("unknown");
+                cell.textContent = board[i][j];
+                cell.innerHTML = '<i class="fas fa-bomb"></i>';
+            }
+        }
+    }
+}
 main();
