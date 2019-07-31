@@ -64,3 +64,29 @@
     color: #ffd300;
     font-size: 50px;
 }
+
+.title {
+	display: inline;
+	position: relative;
+	font: 150px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+	color: #fdc982;
+}
+
+.title:after {
+	content: "Minesweeper";
+	position: absolute; left: 10px; top: 5px;
+	color: rgba(255,0,0,0.5);
+}
+.subtitle {
+    color: #666666;
+}
+.choose_diff {
+    color: #fa8072;
+}
+
+.btn {
+    background-color: #fdc982;
+    color: white;
+    font-size: 20px;
+}
