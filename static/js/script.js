@@ -4,6 +4,14 @@ function main() {
     let numberOfBombs = getNumberOfBombs();
     let bombs = placeBombs(numberOfBombs, board);
 
+    //Set modals
+    for (let refresh of document.querySelectorAll(".refresh")){
+        refresh.addEventListener('click', function(){window.location.reload();})
+    }
+    for (let home of document.querySelectorAll(".home")){
+        home.addEventListener('click', function(){window.location.href = "/";});
+    }
+
     showCellContent(board);
     setCellNumbers(board);
     let flags = [];
@@ -12,10 +20,10 @@ function main() {
 }
 
 
-function placeBombs(mineNumber, board){
+function placeBombs(bombNumber, board){
     let bombs = [];
     let i = 0;
-    while(i !== mineNumber){
+    while(i !== bombNumber){
         let row = Math.floor(Math.random() * board.length);
         let col = Math.floor(Math.random() * board[0].length);
         if(board[row][col]!==-1){
@@ -42,11 +50,7 @@ function placeFlag(flags, bombs) {
             if (cell.classList.contains("known")) {
                 return;
             }
-            let includes = false;
-            for (let cls of cell.classList) {
-                if (cls === 'flag') includes = true;
-            }
-            if (includes) {
+            if (cell.classList.contains("flag")) {
                 for(let i = 0; i < flags.length; i++){
                     if (arrayEquals2D(flags[i],flagPosition)) {
                         flags.splice(i, 1);
@@ -122,16 +126,27 @@ function setCellNumbers(board){
 
 function gameOver(){
     let smiley = document.querySelector('.fa-smile');
-    smiley.classList.add('fa-frown');
+    smiley.classList.add('fa-dizzy');
     smiley.classList.remove('fa-smile');
-    console.log("game lost")
+    //show bombs, then continue
+    let modalTitle = document.querySelector(".modal-title");
+    let modalBody = document.querySelector(".modal-body");
+    modalBody.textContent = "Would you like to retry?";
+    modalTitle.textContent = "Game over!";
+    $('#myModal').modal('show');
 }
 
 
 function isGameWon(flags, bombs){
+
     console.log(flags, bombs);
     if(arrayEquals2D(flags, bombs)){
+        let modalTitle = document.querySelector(".modal-title");
+        let modalBody = document.querySelector(".modal-body");
         console.log("game won");
+        modalBody.textContent = "You won! Would you like to play again?";
+        modalTitle.textContent = "Congratulations!";
+        $('#myModal').modal('show');
         //game won
     }
 }
@@ -155,9 +170,9 @@ function arrayEquals2D(a, b){
 }
 
 function counter(){
-    var minutesLabel = document.getElementById("minutes");
-    var secondsLabel = document.getElementById("seconds");
-    var totalSeconds = 0;
+    let minutesLabel = document.getElementById("minutes");
+    let secondsLabel = document.getElementById("seconds");
+    let totalSeconds = 0;
     setInterval(setTime, 1000);
 
     function setTime() {
@@ -167,7 +182,7 @@ function counter(){
     }
 
     function pad(val) {
-        var valString = val + "";
+        let valString = val + "";
         if (valString.length < 2) {
             return "0" + valString;
         } else {
