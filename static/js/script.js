@@ -1,24 +1,11 @@
 function main() {
-    let board = Array(12).fill().map(() => Array(12).fill(0));
+    let lengthOfArray = int(getArraySize());
+    let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
 
-
-    /*
-    difficulty = document.getElementById("difficulty").value;
-
-    if (difficulty === "easy") {
-        let mineNumber = 7;
-        let arrayLength = 5;
-    } else if (difficulty === "medium") {
-        let mineNumber = 20;
-        let arrayLength = 12;
-    } else {
-        let mineNumber = 60;
-        let arrayLength = 20;
-    }*/
 
     let bombs = placeBombs(5, board);
 
-    showCellContent(board)
+    showCellContent(board);
     setCellNumbers(board);
     let flags = [];
     placeFlag(flags, bombs);
@@ -190,5 +177,9 @@ function counter(){
     }
 }
 
+function getArraySize() {
+    let row_num = document.getElementById("row_num").textContent;
+    return row_num;
+}
 
 main();
