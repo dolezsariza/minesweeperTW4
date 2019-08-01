@@ -90,3 +90,11 @@
     color: white;
     font-size: 20px;
 }
+
+img {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
