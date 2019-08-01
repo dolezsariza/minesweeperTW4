@@ -22,7 +22,7 @@ function main() {
 function init(event) {
     let row =  parseInt(event.target.dataset.row);
     let col = parseInt(event.target.dataset.col);
-
+    if(!row)return;
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
     let numberOfBombs = getNumberOfBombs();
@@ -283,9 +283,9 @@ function getNumberOfBombs() {
     if (difficulty === "easy") {
         numberOfBombs = 4;
     } else if (difficulty === "medium") {
-        numberOfBombs = 40;
+        numberOfBombs = 20;
     } else {
-        numberOfBombs = 99;
+        numberOfBombs = 40;
     }
     return numberOfBombs
 }
