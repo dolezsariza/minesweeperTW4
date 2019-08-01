@@ -5,6 +5,16 @@ let countTime;
 function main() {
     setBoardWidth();
     addEventListener('click', init);
+    addEventListener('mousedown',()=>{
+        let smiley = document.querySelector('.fa-smile');
+        smiley.classList.add('fa-surprise');
+        smiley.classList.remove('fa-smile');
+    })
+    addEventListener('mouseup',()=>{
+        let smiley = document.querySelector('.fa-surprise');
+        smiley.classList.add('fa-smile');
+        smiley.classList.remove('fa-surprise');
+    })
 
 }
 
@@ -127,7 +137,11 @@ function showCellContent(board) {
             gameCell.classList.add("known");
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
-                gameOver();
+                let smiley = document.querySelector('.fa-smile');
+                smiley.classList.add('fa-dizzy');
+                smiley.classList.remove('fa-smile');
+                showBombsOnLoose(board);
+                setInterval(gameOver, 1000);
                 gameCell.innerHTML = '<i class="fas fa-bomb"></i>';
 
             } else if (board[row][col] === 0){
@@ -172,14 +186,12 @@ function setCellNumbers(board){
 }
 
 function gameOver(){
-    let smiley = document.querySelector('.fa-smile');
-    smiley.classList.add('fa-dizzy');
-    smiley.classList.remove('fa-smile');
     //show bombs, then continue
     let modalTitle = document.querySelector(".modal-title");
     let modalBody = document.querySelector(".modal-body");
     modalBody.textContent = "Would you like to retry?";
     modalTitle.textContent = "Game over!";
+    $('#myModal').modal({backdrop: 'static', keyboard: false})
     $('#myModal').modal('show');
     clearInterval(countTime);
 }
@@ -200,7 +212,9 @@ function isGameWon(flags, bombs){
                                         <p><button class="btn" type="submit">Want to save it?</button></p> 
                                         </form>`;
         modalTitle.textContent = "Congratulations!";
+        $('#myModal').modal({backdrop: 'static', keyboard: false})
         $('#myModal').modal('show');
+
         //game won
 
     }
@@ -360,4 +374,18 @@ function printBoard(board){
     console.log(boardString);
 }
 
+
+function showBombsOnLoose(board){
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[0].length; j++){
+            if(board[i][j] === -1){
+                let cell = document.getElementById(`cell-${i}-${j}`);
+                cell.classList.add("known");
+                cell.classList.remove("unknown");
+                cell.textContent = board[i][j];
+                cell.innerHTML = '<i class="fas fa-bomb"></i>';
+            }
+        }
+    }
+}
 main();

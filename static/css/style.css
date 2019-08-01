@@ -43,6 +43,7 @@
     padding:15px;
     font-size:20px;
     text-align:center;
+    transition: all 0.1s ease;
 }
 
 .fa-bomb {
