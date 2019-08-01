@@ -5,6 +5,16 @@ let countTime;
 function main() {
     setBoardWidth();
     addEventListener('click', init);
+    addEventListener('mousedown',()=>{
+        let smiley = document.querySelector('.fa-smile');
+        smiley.classList.add('fa-surprise');
+        smiley.classList.remove('fa-smile');
+    })
+    addEventListener('mouseup',()=>{
+        let smiley = document.querySelector('.fa-surprise');
+        smiley.classList.add('fa-smile');
+        smiley.classList.remove('fa-surprise');
+    })
 
 }
 
@@ -127,6 +137,9 @@ function showCellContent(board) {
             gameCell.classList.add("known");
             gameCell.classList.remove("unknown");
             if (board[row][col] === -1) {
+                let smiley = document.querySelector('.fa-smile');
+                smiley.classList.add('fa-dizzy');
+                smiley.classList.remove('fa-smile');
                 showBombsOnLoose(board);
                 setInterval(gameOver, 1000);
                 gameCell.innerHTML = '<i class="fas fa-bomb"></i>';
@@ -173,9 +186,6 @@ function setCellNumbers(board){
 }
 
 function gameOver(){
-    let smiley = document.querySelector('.fa-smile');
-    smiley.classList.add('fa-dizzy');
-    smiley.classList.remove('fa-smile');
     //show bombs, then continue
     let modalTitle = document.querySelector(".modal-title");
     let modalBody = document.querySelector(".modal-body");
