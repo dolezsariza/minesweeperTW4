@@ -17,6 +17,6 @@ pyvenv.cfg
 pip-selfcheck.json
 .idea
 __pycache__
-
+db/db.csv
 
 # End of https://www.gitignore.io/api/venv
