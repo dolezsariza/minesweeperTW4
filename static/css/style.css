@@ -1,5 +1,10 @@
 *{
     font-family: 'Quicksand', sans-serif;
+
+}
+
+body{
+    overflow-x:hidden;
 }
 .unknown{
     background-color:grey;
@@ -109,6 +114,7 @@ img {
     position: absolute;
     right: 0px;
     bottom: 0px;
+
 }
 
 table.highscore {
