@@ -20,9 +20,10 @@ function main() {
 
 
 function init(event) {
-    let row =  parseInt(event.target.dataset.row);
+    let row =  event.target.dataset.row;
     let col = parseInt(event.target.dataset.col);
     if(!row)return;
+    row = parseInt(row);
     let lengthOfArray = getArraySize();
     let board = Array(lengthOfArray).fill().map(() => Array(lengthOfArray).fill(0));
     let numberOfBombs = getNumberOfBombs();
