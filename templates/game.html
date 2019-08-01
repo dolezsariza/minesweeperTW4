@@ -36,38 +36,42 @@
 
 
 <div class="container">
-    <div class = "row align-items-center">
-        <div class = "col animated bounceIn fast">
-            <h1>Minesweeper</h1>
-        </div>
-
-    </div>
-    <div class = "row align-items-center">
-
-        <div class = "col">
-            <input type="button" onClick="history.go(0)" value="Restart" class = "btn btn-secondary">
-        </div>
-        <div class = "col">
-            <a href="/"><button class = "btn btn-warning" >Main menu</button></a>
-        </div>
-
-        <div class = "col ">
-            <div class = "smiley">
-                <i class="far fa-smile"></i>
+    <div class = "board no-frame">
+        <div class = "row justify-content-center ">
+            <div style = "text-align:center" class = "col animated bounceIn fast">
+                <h1>Minesweeper</h1>
             </div>
+
         </div>
-        <div class = "col justify-content-center animated flipInX fast">
-            <h2>Time</h2>
-            <label id="minutes">00</label>:<label id="seconds">00</label>
-        </div>
-        <div class = "col justify-content-center animated flipInX fast">
-            <h2>Bombs</h2>
-            <p id ="bombs_left">0</p>
+        <div class = "row justify-content-center ">
+
+
+
+            <div class = "col">
+                <input type="button" onClick="history.go(0)" value="Restart" class = "btn btn-secondary">
+            </div>
+            <div class = "col">
+                <a href="/"><button class = "btn btn-warning" >Main menu</button></a>
+            </div>
+
+            <div class = "col ">
+                <div class = "smiley">
+                    <i class="far fa-smile"></i>
+                </div>
+            </div>
+            <div class = "col justify-content-center animated flipInX fast">
+                <h2>Time</h2>
+                <label id="minutes">00</label>:<label id="seconds">00</label>
+            </div>
+            <div class = "col animated flipInX fast">
+                <h2>Bombs</h2>
+                <p id ="bombs_left">0</p>
+            </div>
         </div>
     </div>
     <div class = "board">
         {% for row in range(row_num) %}
-            <div class="row ">
+            <div class="row justify-content-center ">
                 {% for col in range(col_num) %}
                     <div id ="cell-{{ row }}-{{ col }}" data-row = "{{ row }}" data-col ="{{ col }}" class="cell col unknown align-middle">
 
@@ -77,12 +81,12 @@
         {%  endfor %}
     </div>
     <div class="footer">
-
-         <p>Level <span id="difficulty">{{ difficulty }}</span> (
+        <div class="board no-frame">
+            <p>Level <span id="difficulty">{{ difficulty }}</span> (
                 <span id="row_num">{{ row_num }}</span> x
                 <span id="col_num">{{ col_num }}</span>)</p>
-        <p style="visibility: hidden;">Total seconds <span id="total_time"></span></p>
-
+            <p style="visibility: hidden;">Total seconds <span id="total_time"></span></p>
+        </div>
     </div>
     <i style="visibility: hidden" class="fas fa-bomb"></i>
     <i style="visibility: hidden" class="fas fa-flag flag"></i>

@@ -93,11 +93,13 @@ window.oncontextmenu = function (){
 
 
 function placeFlag(flags, bombs) {
+
     let cells = document.querySelectorAll('.cell');
     let bombsLeft = document.getElementById("bombs_left")
     for (let cell of cells) {
 
         cell.addEventListener('contextmenu', function () {
+
             let flagPosition = [parseInt(cell.dataset.row),parseInt(cell.dataset.col)]
             if (cell.classList.contains("known")) {
                 return;
@@ -117,7 +119,7 @@ function placeFlag(flags, bombs) {
             }
             cell.classList.toggle('flag');
             isGameWon(flags, bombs);
-
+            console.log(flags, bombs);
         }, false);
     }
 }
@@ -296,10 +298,12 @@ function countScore() {
 function setBoardWidth(){
     let difficulty = document.getElementById("difficulty").textContent;
     let rows = document.querySelectorAll(".row");
-    let board = document.querySelector(".board");
+    let boards = document.querySelectorAll(".board");
     if (difficulty === "medium")return;
     let width = difficulty === "easy" ? "305px" : "2000px";
-    board.style.maxWidth = width;
+    for(let board of boards) {
+        board.style.maxWidth = width;
+    }
     for(let row of rows) {
         row.style.maxWidth = width;
     }
