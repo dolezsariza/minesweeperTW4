@@ -109,3 +109,38 @@ img {
     right: 0px;
     bottom: 0px;
 }
+
+table.highscore {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  border: 0px solid #000000;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.highscore td, table.highscore th {
+  border: 0px solid #AAAAAA;
+  padding: 7px 10px;
+}
+table.highscore tr:nth-child(even)a {
+  background: #F5DECA;
+}
+table.highscore thead {
+  background: #F9781A;
+  background: -moz-linear-gradient(top, #fa9a53 0%, #f98531 66%, #F9781A 100%);
+  background: -webkit-linear-gradient(top, #fa9a53 0%, #f98531 66%, #F9781A 100%);
+  background: linear-gradient(to bottom, #fa9a53 0%, #f98531 66%, #F9781A 100%);
+}
+table.highscore thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #F5BB26;
+}
+table.highscore thead th:first-child {
+  border-left: none;
+}
+
+.table {
+    position: absolute;
+    left: 21%;
+}
