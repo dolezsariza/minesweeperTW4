@@ -10,8 +10,9 @@
 }
 
 .board{
+    margin:auto;
    max-width: 724px;
-    padding: 0px 15px;
+    padding: 0 15px;
     border-bottom: 2px solid #f5f5f5;
     border-left: 2px solid #7B7B7B;
     border-top: 2px solid #7B7B7B;
@@ -23,10 +24,12 @@
 .row{
     width:auto;
     max-width: 724px;
+    margin:auto;
 }
 
 .container{
-  margin-top: 20px;
+    margin: 20px auto;
+
 }
 
 .known{
@@ -87,9 +90,16 @@
 }
 
 .btn {
+    margin: 5px 0;
     background-color: #fdc982;
     color: white;
     font-size: 20px;
+}
+
+
+.no-frame{
+    border:0;
+    padding: 0;
 }
 
 img {

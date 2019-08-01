@@ -104,6 +104,8 @@ function placeFlag(flags, bombs) {
             }
             if (cell.classList.contains("flag")) {
                 bombsLeft.textContent = (parseInt(bombsLeft.textContent))+1;
+                flags.sort();
+                bombs.sort();
                 for(let i = 0; i < flags.length; i++){
                     if (arrayEquals2D(flags[i],flagPosition)) {
                         flags.splice(i, 1);
@@ -117,7 +119,14 @@ function placeFlag(flags, bombs) {
             }
             cell.classList.toggle('flag');
             isGameWon(flags, bombs);
-
+            for(let flag of flags) {
+                console.log(flag.toString());
+            }
+            console.log("\n");
+            for(let bomb of bombs) {
+                console.log(bomb.toString());
+            }
+            console.log("\n");
         }, false);
     }
 }
@@ -198,6 +207,8 @@ function gameOver(){
 
 
 function isGameWon(flags, bombs){
+    flags.sort();
+    bombs.sort();
     if(arrayEquals2D(flags, bombs)){
         let modalTitle = document.querySelector(".modal-title");
         let modalBody = document.querySelector(".modal-body");
@@ -225,8 +236,6 @@ function arrayEquals2D(a, b){
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (a.length != b.length) return false;
-    a.sort();
-    b.sort();
     for (let i = 0; i < a.length; ++i) {
         if(typeof a[i] == "object"){if (!arrayEquals2D(a[i], b[i])) return false;}
         else{
@@ -302,10 +311,12 @@ function countScore() {
 function setBoardWidth(){
     let difficulty = document.getElementById("difficulty").textContent;
     let rows = document.querySelectorAll(".row");
-    let board = document.querySelector(".board");
+    let boards = document.querySelectorAll(".board");
     if (difficulty === "medium")return;
     let width = difficulty === "easy" ? "305px" : "2000px";
-    board.style.maxWidth = width;
+    for(let board of boards) {
+        board.style.maxWidth = width;
+    }
     for(let row of rows) {
         row.style.maxWidth = width;
     }
