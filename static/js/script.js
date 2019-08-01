@@ -93,14 +93,12 @@ window.oncontextmenu = function (){
 
 
 function placeFlag(flags, bombs) {
-
     let cells = document.querySelectorAll('.cell');
-    let bombsLeft = document.getElementById("bombs_left")
+    let bombsLeft = document.getElementById("bombs_left");
     for (let cell of cells) {
 
         cell.addEventListener('contextmenu', function () {
-
-            let flagPosition = [parseInt(cell.dataset.row),parseInt(cell.dataset.col)]
+            let flagPosition = [parseInt(cell.dataset.row),parseInt(cell.dataset.col)];
             if (cell.classList.contains("known")) {
                 return;
             }
@@ -119,7 +117,7 @@ function placeFlag(flags, bombs) {
             }
             cell.classList.toggle('flag');
             isGameWon(flags, bombs);
-            console.log(flags, bombs);
+
         }, false);
     }
 }
@@ -203,10 +201,16 @@ function isGameWon(flags, bombs){
     if(arrayEquals2D(flags, bombs)){
         let modalTitle = document.querySelector(".modal-title");
         let modalBody = document.querySelector(".modal-body");
+        let difficulty = document.getElementById("difficulty").textContent;
         clearInterval(countTime);
         countScore();
         console.log("game won");
-        modalBody.textContent = `You won! Would you like to play again? Your score: ${countScore()}`;
+                modalBody.innerHTML = `You won! Would you like to play again? Your score: ${countScore()}`;
+                 modalBody.innerHTML += `<form action="/game-ended" method="POST"> 
+                                        <input type="hidden" name="score" value="${countScore()}"> 
+                                        <input type="hidden" name="difficulty" value="${difficulty}">
+                                        <p><button class="btn" type="submit">Want to save it?</button></p> 
+                                        </form>`;
         modalTitle.textContent = "Congratulations!";
         $('#myModal').modal({backdrop: 'static', keyboard: false})
         $('#myModal').modal('show');

@@ -25,11 +25,37 @@
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
-            <br>
-            <p><button class = "btn" type="submit">Play</button></p>
+            <p><button class="btn" type="submit">Play</button></p>
         </form>
     </div>
 
 </div>
+<div class="container">
+<table>
+    <thead>
+        <tr>
+        <td>Date</td>
+        <td>Name</td>
+        <td>Score</td>
+        <td>Difficulty</td>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for score in scores %}
+            <tr>
+                <td>{{ score[0] }}</td>
+                <td>{{ score[1] }}</td>
+                <td>{{ score[2] }}</td>
+                <td>{{ score[3] }}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+</div>
+<img src="https://media1.giphy.com/media/3oEjHRs7W9RK22UHG8/source.gif">
+
 </body>
 </html>
