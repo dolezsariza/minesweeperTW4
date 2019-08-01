@@ -10,6 +10,7 @@
 }
 
 .board{
+    text-align: center;
     margin:auto;
    max-width: 724px;
     padding: 0 15px;
