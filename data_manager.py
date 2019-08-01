@@ -13,7 +13,8 @@ def getScores():
 
         if len(rLines) != 0:
             lines = {x.replace('\n', '') for x in rLines}
+            items = [score.split(';') for score in lines]
 
-            return sorted([score.split(';') for score in lines], key=lambda x: int(x[2]), reverse=True)
+            return sorted(items, key=lambda x: int(x[2]), reverse=True)
 
     return None
