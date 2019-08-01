@@ -13,7 +13,7 @@ def hello_world():
     return render_template("index.html", scores=data_manager.getScores())
 
 
-@app.route('/game', methods = ["GET","POST"])
+@app.route('/game', methods = ["GET", "POST"])
 def game():
     difficulty = request.form["difficulty"]
 
@@ -29,11 +29,13 @@ def game():
 
     return render_template("game.html",row_num=row_num, col_num=col_num, difficulty=difficulty)
 
+
 @app.route('/game-ended', methods=["GET","POST"])
 def save_score():
     score = request.form["score"]
     difficulty = request.form["difficulty"]
     return render_template("win.html", score=score, difficulty=difficulty)
+
 
 if __name__ == '__main__':
     app.run(
