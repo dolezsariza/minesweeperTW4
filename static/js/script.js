@@ -283,9 +283,9 @@ function getNumberOfBombs() {
     if (difficulty === "easy") {
         numberOfBombs = 4;
     } else if (difficulty === "medium") {
-        numberOfBombs = 20;
+        numberOfBombs = 25;
     } else {
-        numberOfBombs = 40;
+        numberOfBombs = 70;
     }
     return numberOfBombs
 }
